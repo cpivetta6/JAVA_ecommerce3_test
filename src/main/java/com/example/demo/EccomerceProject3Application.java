@@ -39,7 +39,6 @@ public class EccomerceProject3Application implements CommandLineRunner {
 		Item item3 = new Item(null, "Phone", 300.0);
 		itemRepository.saveAll(Arrays.asList(item1, item2, item3));
 		
-		
 	}
 
 }
