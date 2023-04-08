@@ -5,16 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "User_table")
+@Table(name = "user_tb")
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +27,10 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private	String name;
+	private String email;
+	
+	@OneToOne(mappedBy = "user")
+	private Order order;
 	
 	@ElementCollection
 	@CollectionTable(name = "phone")
@@ -32,13 +40,24 @@ public class User implements Serializable{
 		
 	}
 
-	public User(Integer id, String name) {
+	public User(Integer id, String name, String email) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.email = email;
+	}
+	
+	
+	
+
+
+	public Order getOrder() {
+		return order;
 	}
 
-
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 
 	public Integer getId() {
 		return id;
@@ -68,7 +87,17 @@ public class User implements Serializable{
 	public void setPhone(List<String> phone) {
 		this.phone = phone;
 	}
+	
+	
 
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	@Override
 	public int hashCode() {
