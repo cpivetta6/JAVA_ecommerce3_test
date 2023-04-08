@@ -40,6 +40,7 @@ public class EccomerceProject3Application implements CommandLineRunner {
 		itemRepository.saveAll(Arrays.asList(item1, item2, item3));
 		
 		
+		
 	}
 
 }
